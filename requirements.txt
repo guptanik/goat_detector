@@ -11,7 +11,6 @@ pandas>=0.19
 matplotlib>=1.4.3
 cython
 keras-resnet==0.2.0
-git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI
 h5py
 keras
 opencv-python>=3.3.0
