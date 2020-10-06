@@ -11,6 +11,6 @@ keras_retinanet
 h5py
 opencv-python-headless==4.2.0.32
 pillow
-tensorflow>=2.3.0
+tensorflow==2.3.0
 gdown
-keras
+keras==2.4
