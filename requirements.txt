@@ -6,6 +6,7 @@ Werkzeug==0.15.5
 numpy>=1.9.2
 matplotlib>=1.4.3
 keras-resnet==0.2.0
+keras_retinanet
 h5py
 opencv-python>=3.3.0
 pillow
