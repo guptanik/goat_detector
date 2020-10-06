@@ -12,15 +12,7 @@ import cv2
 
 app = Flask(__name__)
 
-# download trained retinanet model
-url = 'https://drive.google.com/uc?export=download&id=1FCNO5h8lzKMLOWuzYXkTi11BkbTXEhbP'
-output = 'resnet50_csv_79.h5'
-gdown.download(url, output, quiet=True)
-
-# load retinanet model
-model_path = os.path.join(output)
-model = models.load_model(model_path, backbone_name='resnet50')
-model = models.convert_model(model)
+model = None
 
 # load label to names mapping for visualization purposes
 labels_to_names = {0: 'Goat'}
@@ -38,6 +30,8 @@ def predict():
     '''
     For rendering results on HTML GUI
     '''
+    get_model()
+
     global counter
     counter = counter + 1
     print("Value of counter is - {}".format(counter))
@@ -63,6 +57,27 @@ def predict():
     return_val = "<img src='{}'/> <img src='{}'>".format(input_image_path, output_image_path)
     print("Return value from predict function is - {}".format(return_val))
     return return_val
+
+
+def get_model():
+    global model
+    if model:
+        pass
+    else :
+        return download_model()
+
+
+def download_model():
+    # download trained retinanet model
+    url = 'https://drive.google.com/uc?export=download&id=1FCNO5h8lzKMLOWuzYXkTi11BkbTXEhbP'
+    output = 'resnet50_csv_79.h5'
+    gdown.download(url, output, quiet=True)
+
+    # load retinanet model
+    global model
+    model_path = os.path.join(output)
+    model = models.load_model(model_path, backbone_name='resnet50')
+    model = models.convert_model(model)
 
 
 def get_image(img_path):
